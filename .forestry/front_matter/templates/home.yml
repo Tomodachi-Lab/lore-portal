@@ -1,0 +1,11 @@
+---
+label: Home
+hide_body: true
+fields:
+- name: splashImage
+  type: file
+  config:
+    maxSize: 64
+  label: Splash Image
+pages:
+- src/data/home.json

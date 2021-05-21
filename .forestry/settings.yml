@@ -1,0 +1,26 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: 
+webhook_url: 
+sections:
+- type: document
+  path: src/data/home.json
+  label: Home
+- type: directory
+  path: src/data/projects
+  label: Progetti
+  create: documents
+  match: "**/*.json"
+  new_doc_ext: json
+upload_dir: public/assets
+public_path: "/assets"
+front_matter_path: ''
+use_front_matter_path: 
+file_template: ":filename:"
+build:
+  install_dependencies_command: npm install
+  preview_docker_image: forestryio/node:12
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: npm run develop
