@@ -39,5 +39,4 @@ fields:
   label: Categorie
   description: Scegli tra games, art o lore
 pages:
-- src/data/projects/dariomase.json
 - src/data/projects/darion-quest-gb.json
