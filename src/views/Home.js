@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import home from '../data/home.json';
 import { breakpoints, colors, theme } from '../theme/theme';
 import Cards from '../components/Cards';
 import Container from '../components/Container';
@@ -59,7 +58,7 @@ const CardsContainer = styled.div`
   background: ${theme.mainBg};
 `;
 
-const Home = ({ projects }) => {
+const Home = ({ projects, home }) => {
   const { splashImage } = home;
 
   return (

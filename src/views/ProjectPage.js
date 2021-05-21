@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Container from '../components/Container';
 import { theme } from '../theme/theme';
 
-const Body = styled.p`
+const Body = styled.div`
   img {
     display: block;
     max-width: 100%;
@@ -37,7 +37,7 @@ const Body = styled.p`
   }
 `;
 
-const ProjectPage = ({ project, next, previous }) => {
+const ProjectPage = ({ project }) => {
   return (
     <Container>
       <h1>{project.title} works!</h1>
