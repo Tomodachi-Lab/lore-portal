@@ -1,7 +1,9 @@
 {
-  "date": "2021-05-20",
+  "date": "2021-05-22",
   "categories": [
-    "games"
+    {
+      "category": "games"
+    }
   ],
   "image": "/assets/talesofpontederia-1.png",
   "title": "Tales of Pontederia",
