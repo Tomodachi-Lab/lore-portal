@@ -104,6 +104,7 @@ const Categories = styled.div`
 
   > * {
     cursor: pointer;
+    transition: opacity 400ms;
 
     &:hover {
       opacity: 0.75;
