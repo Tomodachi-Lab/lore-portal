@@ -5,16 +5,9 @@ export const colors = {
 
   // Offline Colors
   lavender: '#884BF9',
-  coral: '#FC2E3B',
-
-  // Prelive Colors
-  magenta: '#FF25F9',
-  red: '#FF1011',
   redCornell: '#B51415',
-  yellowSun: '#F8E033',
-
-  redRadical: '#FF246E',
-  orangeSunshade: '#FFA12B',
+  pink: '#E0479E',
+  greyConcrete: '#7A7A7A',
 };
 
 export const theme = {

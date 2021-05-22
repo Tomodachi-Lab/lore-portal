@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { colors, theme } from '../theme/theme';
+import Category from './Category';
 
 const Title = styled.h2`
   position: relative;
@@ -23,6 +24,18 @@ const Wrapper = styled.article`
   background: ${colors.black};
 
   cursor: pointer;
+
+  .category {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2em;
+    z-index: 3;
+
+    opacity: 0.5;
+
+    transition: opacity 400ms ease-in-out;
+  }
 
   &:after {
     content: '';
@@ -51,6 +64,10 @@ const Wrapper = styled.article`
       transform: scale(1.2);
       opacity: 0.33;
     }
+
+    .category {
+      opacity: 0.8;
+    }
   }
 
   &:before {
@@ -68,6 +85,9 @@ const Card = ({ project }) => {
       <Wrapper image={project.image}>
         <div className="backdrop" />
         <Title>{project.title}</Title>
+        <div className="category">
+          <Category category={project.categories[0]} useColor={false} />
+        </div>
       </Wrapper>
     </Link>
   );

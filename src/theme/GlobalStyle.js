@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: "Alegreya Sans", sans-serif;
     margin: 0;
-    line-height: 1em;
+    line-height: 1.1em;
   }
 
   h1 {

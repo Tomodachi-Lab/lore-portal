@@ -1,7 +1,12 @@
 {
   "date": "2021-05-21",
   "categories": [
-    "games"
+    {
+      "category": "games"
+    },
+    {
+      "category": "other"
+    }
   ],
   "image": "/assets/darionquestgb.jpeg",
   "title": "Darion Quest GB",

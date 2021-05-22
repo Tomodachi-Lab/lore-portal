@@ -33,7 +33,9 @@ export async function getStaticProps() {
         };
       })
     )
-  ).map(mapProject);
+  )
+    .map(mapProject)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return {
     props: {
