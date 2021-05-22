@@ -2,7 +2,12 @@
   "date": "2021-05-22",
   "categories": [
     {
-      "category": "games"
+      "category": [
+
+      ]
+    },
+    {
+      "category": "other"
     }
   ],
   "image": "/assets/talesofpontederia-1.png",
