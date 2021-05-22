@@ -13,7 +13,7 @@ fields:
     display_utc: false
     export_format: YYYY-MM-DD
   default: now
-  hidden: true
+  hidden: false
 - name: image
   type: file
   config:
