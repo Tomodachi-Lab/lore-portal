@@ -14,6 +14,12 @@ fields:
     export_format: YYYY-MM-DD
   default: now
   hidden: false
+- name: color
+  type: color
+  label: Colore
+  config:
+    required: false
+    color_format: Hex
 - name: image
   type: file
   config:
@@ -62,12 +68,6 @@ fields:
   config:
     required: false
   label: Autore
-- name: color
-  type: color
-  label: Colore
-  config:
-    required: false
-    color_format: Hex
 pages:
 - src/data/projects/darion-quest-gb.json
 - src/data/projects/tales-of-pontederia.json
