@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { breakpoints, colors, theme } from '../theme/theme';
+import Attribution from '../components/Attribution';
 import Cards from '../components/Cards';
 import Container from '../components/Container';
+import { breakpoints, colors, theme } from '../theme/theme';
 
 const SplashImage = styled.div`
   height: calc(100vh - 15rem);
@@ -16,7 +17,6 @@ const SplashImage = styled.div`
   align-items: center;
 
   position: relative;
-  z-index: -1;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
     height: 100vh;
@@ -45,7 +45,7 @@ const Title = styled.h1`
   text-align: center;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
-    font-size: 5em;
+    font-size: 3.5em;
   }
 `;
 
@@ -56,14 +56,29 @@ const CardsContainer = styled.section`
   padding: 0.5em;
 
   background: ${theme.mainBg};
+
+  position: relative;
+  z-index: 1;
+`;
+
+const AttributionContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 1.5em;
+  z-index: 20;
 `;
 
 const Home = ({ projects, home }) => {
-  const { splashImage } = home;
+  const { splashImage, attribution, attributionLink } = home;
 
   return (
     <section>
       <SplashImage image={splashImage}>
+        <AttributionContainer>
+          <Attribution name={attribution} url={attributionLink} />
+        </AttributionContainer>
         <Title>Tomodachi Lab</Title>
       </SplashImage>
       <Container>

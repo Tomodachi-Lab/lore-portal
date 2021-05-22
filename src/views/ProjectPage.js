@@ -48,6 +48,7 @@ const Body = styled.div`
   line-height: 1.5;
   font-size: 1.25em;
   padding: 0.5em;
+  word-break: break-word;
 
   img {
     display: block;
@@ -88,6 +89,14 @@ const Categories = styled.div`
   }
 `;
 
+const Author = styled.div`
+  display: flex;
+
+  > h4 {
+    margin-left: 0.25em;
+  }
+`;
+
 const ProjectPage = ({ project }) => {
   return (
     <Container>
@@ -95,6 +104,9 @@ const ProjectPage = ({ project }) => {
         <SplashImage image={project.image}>
           <Details>
             <h1>{project.title}</h1>
+            <Author>
+              by <h4>{project.author}</h4>
+            </Author>
             <Categories>
               {project.categories.map((category) => (
                 <Category key={category} category={category} />

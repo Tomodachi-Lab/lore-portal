@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import { colors, theme } from '../theme/theme';
+import { breakpoints, colors, theme } from '../theme/theme';
 import Category from './Category';
 
 const Title = styled.h2`
@@ -11,6 +11,12 @@ const Title = styled.h2`
   text-align: center;
 
   transition: all 250ms ease-in-out;
+
+  @media screen and (max-width: ${breakpoints.tablet}) {
+    position: absolute;
+    top: 0;
+    padding: 1rem;
+  }
 `;
 
 const Wrapper = styled.article`
@@ -35,6 +41,15 @@ const Wrapper = styled.article`
     opacity: 0.5;
 
     transition: opacity 400ms ease-in-out;
+
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: ${breakpoints.tablet}) {
+      opacity: 0.8;
+      padding: 1em;
+      font-size: 0.8em;
+    }
   }
 
   &:after {
@@ -79,6 +94,17 @@ const Wrapper = styled.article`
   }
 `;
 
+const Author = styled.div`
+  color: ${colors.white};
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
+
+  > h4 {
+    margin-left: 0.25em;
+  }
+`;
+
 const Card = ({ project }) => {
   return (
     <Link href={`/project/${project.slug}`}>
@@ -87,6 +113,9 @@ const Card = ({ project }) => {
         <Title>{project.title}</Title>
         <div className="category">
           <Category category={project.categories[0]} useColor={false} />
+          <Author>
+            by <h4>{project.author}</h4>
+          </Author>
         </div>
       </Wrapper>
     </Link>
