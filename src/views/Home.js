@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import Attribution from '../components/Attribution';
@@ -51,8 +52,7 @@ const Title = styled.h1`
 
 const CardsContainer = styled.section`
   margin: 0 2em;
-  margin-top: -8em;
-  margin-bottom: 8em;
+  margin-top: -3em;
   padding: 0.5em;
 
   background: ${theme.mainBg};
@@ -70,6 +70,11 @@ const AttributionContainer = styled.div`
   z-index: 20;
 `;
 
+const ShowAll = styled.h1`
+  text-align: center;
+  padding: 2rem 0;
+`;
+
 const Home = ({ projects, home }) => {
   const { splashImage, attribution, attributionLink } = home;
 
@@ -85,6 +90,11 @@ const Home = ({ projects, home }) => {
         <CardsContainer>
           <Cards projects={[...projects].splice(0, 6)} />
         </CardsContainer>
+        {projects.length > 6 && (
+          <ShowAll>
+            <Link href="/search">Vedi tutti i progetti</Link>
+          </ShowAll>
+        )}
       </Container>
     </section>
   );

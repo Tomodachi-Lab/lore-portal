@@ -9,13 +9,12 @@ const Title = styled.h2`
   z-index: 3;
   color: ${theme.mainBg};
   text-align: center;
-
+  padding: 1rem;
   transition: all 250ms ease-in-out;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
     position: absolute;
     top: 0;
-    padding: 1rem;
   }
 `;
 
@@ -35,7 +34,7 @@ const Wrapper = styled.article`
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 2em;
+    padding: 1em;
     z-index: 3;
 
     opacity: 0.5;
@@ -47,7 +46,6 @@ const Wrapper = styled.article`
 
     @media screen and (max-width: ${breakpoints.tablet}) {
       opacity: 0.8;
-      padding: 1em;
       font-size: 0.8em;
     }
   }

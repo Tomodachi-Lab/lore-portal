@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import Category from '../components/Category';
@@ -16,7 +17,7 @@ const SplashImage = styled.div`
   align-items: flex-end;
 
   position: relative;
-  z-index: -1;
+  z-index: 0;
   padding: 2em;
   padding-left: 0;
 
@@ -47,8 +48,10 @@ const Body = styled.div`
   max-width: 80ch;
   line-height: 1.5;
   font-size: 1.25em;
-  padding: 0.5em;
+  padding: 1em;
   word-break: break-word;
+  background: ${colors.white};
+  margin: 1em 0;
 
   img {
     display: block;
@@ -57,7 +60,7 @@ const Body = styled.div`
   }
 
   p {
-    margin: 1em 0;
+    margin-bottom: 1em;
   }
 
   pre {
@@ -83,9 +86,28 @@ const Body = styled.div`
 `;
 
 const Categories = styled.div`
-  padding: 0.5em 0;
-  > * + * {
-    margin-left: 0.5em;
+  span {
+    display: inline-flex;
+  }
+
+  > * {
+    padding: 0.25em;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  > * {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.75;
+    }
   }
 `;
 
@@ -97,7 +119,7 @@ const Author = styled.div`
   }
 `;
 
-const ProjectPage = ({ project }) => {
+const Project = ({ project }) => {
   return (
     <Container>
       <Content>
@@ -109,16 +131,27 @@ const ProjectPage = ({ project }) => {
             </Author>
             <Categories>
               {project.categories.map((category) => (
-                <Category key={category} category={category} />
+                <Link
+                  key={category}
+                  href={{
+                    pathname: '/search',
+                    query: {
+                      category,
+                    },
+                  }}
+                >
+                  <span>
+                    <Category category={category} />
+                  </span>
+                </Link>
               ))}
             </Categories>
           </Details>
         </SplashImage>
-
         <Body dangerouslySetInnerHTML={{ __html: project.body }} />
       </Content>
     </Container>
   );
 };
 
-export default ProjectPage;
+export default Project;

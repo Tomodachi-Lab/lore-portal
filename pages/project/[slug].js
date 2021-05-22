@@ -2,13 +2,13 @@ import glob from 'glob';
 import React from 'react';
 import Meta from '../../src/components/Meta';
 import mapProject from '../../src/utils/mapProject';
-import ProjectPage from '../../src/views/ProjectPage';
+import Project from '../../src/views/Project';
 
 const ProjectRoute = ({ project }) => {
   return (
     <>
       <Meta title={project.title} image={project.image} />
-      <ProjectPage project={project} />
+      <Project project={project} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #root {
+  html, body, #__next {
     height: 100%;
     overflow: auto;
     margin: 0;
@@ -20,6 +20,12 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: ${theme.primary};
+
+    transition: opacity 200ms ease-in-out;
+    &:hover {
+      opacity: .75;
+    }
   }
  
   h1, h2, h3, h4, h5, h6 {
