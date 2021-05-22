@@ -18,5 +18,17 @@ fields:
   config:
     required: false
   label: Attribution Link
+- name: progetto
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: pages
+      section: progetti
+      file: 
+      path: 
+  label: progetto
 pages:
 - src/data/home.json
