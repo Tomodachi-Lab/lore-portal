@@ -34,9 +34,28 @@ fields:
       format: html-blocks
   label: Contenuto
 - name: categories
-  type: tag_list
-  default: []
+  type: field_group_list
+  fields:
+  - name: category
+    type: select
+    default: []
+    config:
+      required: false
+      options:
+      - games
+      - illustration
+      - music
+      - other
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: Categoria
+  config:
+    min: 
+    max: 
+    labelField: 
   label: Categorie
-  description: Scegli tra games, art o lore
 pages:
 - src/data/projects/darion-quest-gb.json
