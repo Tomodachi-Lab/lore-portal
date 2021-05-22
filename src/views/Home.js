@@ -49,7 +49,7 @@ const Title = styled.h1`
   }
 `;
 
-const CardsContainer = styled.div`
+const CardsContainer = styled.section`
   margin: 0 2em;
   margin-top: -8em;
   margin-bottom: 8em;
@@ -68,7 +68,7 @@ const Home = ({ projects, home }) => {
       </SplashImage>
       <Container>
         <CardsContainer>
-          <Cards projects={projects.splice(0, 6)} />
+          <Cards projects={[...projects].splice(0, 6)} />
         </CardsContainer>
       </Container>
     </section>

@@ -16,6 +16,7 @@
     "styled-reset": "^4.3.4"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "latest"
+    "babel-plugin-styled-components": "latest",
+    "glob": "^7.1.7"
   }
 }

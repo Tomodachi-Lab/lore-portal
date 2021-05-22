@@ -1,16 +1,14 @@
+import glob from 'glob';
 import React from 'react';
 import Meta from '../../src/components/Meta';
-import getProjects, { mapProject } from '../../src/data-handling/getProjects';
+import mapProject from '../../src/utils/mapProject';
 import ProjectPage from '../../src/views/ProjectPage';
 
-const projects = getProjects();
-
 const ProjectRoute = ({ project }) => {
-  const mappedProject = mapProject(project);
   return (
     <>
       <Meta title={project.title} image={project.image} />
-      <ProjectPage project={mappedProject} />
+      <ProjectPage project={project} />
     </>
   );
 };
@@ -18,17 +16,21 @@ const ProjectRoute = ({ project }) => {
 export default ProjectRoute;
 
 export async function getStaticPaths() {
-  const paths = projects.map(({ slug }) => {
-    return { params: { slug } };
-  });
-  return { paths, fallback: true };
+  const blogs = glob.sync('src/data/projects/**/*.json');
+
+  const paths = blogs.map(
+    (fullPath) => `/project/${fullPath.split('/').pop().replace('.json', '')}`
+  );
+
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
-  const currentProject = params.slug;
-  const project = projects.find(({ slug }) => slug === currentProject) || {
-    notfound: true,
-  };
+  const { slug } = params;
+  const project = mapProject(require(`../../src/data/projects/${slug}.json`));
 
-  return { props: { project } };
+  return { props: { project: project } };
 }
