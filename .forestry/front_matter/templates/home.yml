@@ -7,5 +7,16 @@ fields:
   config:
     maxSize: 64
   label: Splash Image
+- name: attribution
+  type: text
+  config:
+    required: false
+  label: Attribution
+  description: I dettagli dell'immagine utilizzata
+- name: attributionLink
+  type: text
+  config:
+    required: false
+  label: Attribution Link
 pages:
 - src/data/home.json
