@@ -38,7 +38,7 @@ fields:
   fields:
   - name: category
     type: select
-    default: []
+    default: ''
     config:
       required: false
       options:
@@ -55,7 +55,7 @@ fields:
   config:
     min: 
     max: 
-    labelField: 
+    labelField: category
   label: Categorie
 pages:
 - src/data/projects/darion-quest-gb.json
