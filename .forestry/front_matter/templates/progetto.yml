@@ -57,6 +57,11 @@ fields:
     max: 
     labelField: category
   label: Categorie
+- name: author
+  type: text
+  config:
+    required: false
+  label: Autore
 pages:
 - src/data/projects/darion-quest-gb.json
 - src/data/projects/tales-of-pontederia.json
