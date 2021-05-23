@@ -13,7 +13,13 @@ fields:
     display_utc: false
     export_format: YYYY-MM-DD
   default: now
-  hidden: true
+  hidden: false
+- name: color
+  type: color
+  label: Colore
+  config:
+    required: false
+    color_format: Hex
 - name: image
   type: file
   config:
