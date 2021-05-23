@@ -1,7 +1,7 @@
 import mapProject from './mapProject';
 
 const getProjects = async (path, fs) => {
-  const projectsDirectory = path.join(process.cwd(), 'src/data/projects');
+  const projectsDirectory = path.join(process.cwd(), 'data/projects');
   const fileNames = await fs.readdir(projectsDirectory);
 
   return (

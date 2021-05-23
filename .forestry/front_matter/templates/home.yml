@@ -19,4 +19,4 @@ fields:
     required: false
   label: Attribution Link
 pages:
-- src/data/home.json
+- data/home.json

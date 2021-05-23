@@ -1,9 +1,9 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import React from 'react';
-import Meta from '../src/components/Meta';
-import Search from '../src/components/Search';
-import getProjects from '../src/utils/getProjects';
+import Meta from '../client/components/Meta';
+import Search from '../client/components/Search';
+import getProjects from '../server/getProjects';
 
 const App = ({ projects }) => {
   return (

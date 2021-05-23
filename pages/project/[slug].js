@@ -1,8 +1,8 @@
 import glob from 'glob';
 import React from 'react';
-import Meta from '../../src/components/Meta';
-import mapProject from '../../src/utils/mapProject';
-import Project from '../../src/views/Project';
+import Meta from '../../client/components/Meta';
+import mapProject from '../../server/mapProject';
+import Project from '../../client/views/Project';
 
 const ProjectRoute = ({ project }) => {
   return (
@@ -16,7 +16,7 @@ const ProjectRoute = ({ project }) => {
 export default ProjectRoute;
 
 export async function getStaticPaths() {
-  const blogs = glob.sync('src/data/projects/**/*.json');
+  const blogs = glob.sync('data/projects/**/*.json');
 
   const paths = blogs.map(
     (fullPath) => `/project/${fullPath.split('/').pop().replace('.json', '')}`
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const project = mapProject(require(`../../src/data/projects/${slug}.json`));
+  const project = mapProject(require(`../../data/projects/${slug}.json`));
 
   return { props: { project: project } };
 }

@@ -5,10 +5,10 @@ admin_path:
 webhook_url: 
 sections:
 - type: document
-  path: src/data/home.json
+  path: data/home.json
   label: Home
 - type: directory
-  path: src/data/projects
+  path: data/projects
   label: Progetti
   create: documents
   match: "**/*.json"

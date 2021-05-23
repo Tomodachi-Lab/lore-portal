@@ -69,5 +69,5 @@ fields:
     required: false
   label: Autore
 pages:
-- src/data/projects/darion-quest-gb.json
-- src/data/projects/tales-of-pontederia.json
+- data/projects/darion-quest-gb.json
+- data/projects/tales-of-pontederia.json

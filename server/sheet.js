@@ -37,9 +37,9 @@ const serializeRow = (sheet, row) => {
   }, {});
 };
 
-const getCandidates = async () => readSheet(SHEETS.CANDIDATES);
+export const getCandidates = async () => readSheet(SHEETS.CANDIDATES);
 
-const addCandidate = async (body) => {
+export const addCandidate = async (body) => {
   try {
     const sheet = await getSheet(SHEETS.CANDIDATES);
 
@@ -71,7 +71,7 @@ const addCandidate = async (body) => {
   }
 };
 
-const addProjectApplication = async (body) => {
+export const addProjectApplication = async (body) => {
   try {
     const sheet = await getSheet(SHEETS.PROJECT_APPLICATIONS);
 
@@ -103,12 +103,5 @@ const addProjectApplication = async (body) => {
   }
 };
 
-const getProjectApplicationsPublished = async () =>
+export const getProjectApplicationsPublished = async () =>
   readSheet(SHEETS.PROJECT_APPLICATIONS_PUBLISHED);
-
-module.exports = {
-  getCandidates,
-  addCandidate,
-  getProjectApplicationsPublished,
-  addProjectApplication,
-};
