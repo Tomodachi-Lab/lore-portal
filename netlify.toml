@@ -1,0 +1,8 @@
+[build]
+  command = "yarn run build"
+  functions = "functions"
+  publish = "out"
+
+[dev]
+  command = "yarn run next:dev"
+  port = 8888
