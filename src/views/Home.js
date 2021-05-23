@@ -9,15 +9,42 @@ import { breakpoints, colors, theme } from '../theme/theme';
 const SplashImage = styled.div`
   height: calc(100vh - 15rem);
   width: 100%;
-  background-image: url('${({ image }) => image}');
-  background-size: cover;
-  background-position: center;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: relative;
+
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('${({ image }) => image}');
+    background-size: cover;
+    background-position: center;
+
+    animation-duration: 40s;
+    animation-timing-function: ease;
+    animation-name: zoomMove;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    @keyframes zoomMove {
+      0% {
+        transform-origin: bottom left;
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.2);
+      }
+    }
+  }
 
   @media screen and (max-width: ${breakpoints.tablet}) {
     height: 100vh;
