@@ -71,3 +71,4 @@ fields:
 pages:
 - src/data/projects/darion-quest-gb.json
 - src/data/projects/tales-of-pontederia.json
+- src/data/projects/tomodachi-kigen.json
