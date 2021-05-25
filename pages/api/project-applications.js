@@ -1,4 +1,8 @@
-import { addProjectApplication } from '../../server/sheet';
+import handleResponse from '../../server/handleResponse';
+import {
+  addProjectApplication,
+  getProjectApplicationsPublished,
+} from '../../server/sheet';
 import { sendNotification } from '../../server/telegram';
 
 const TelegramBot = require('node-telegram-bot-api');
@@ -9,27 +13,33 @@ const bot = (() => {
   }
 })();
 
-export default function handler(req, res) {
-  if (req.method !== 'PUT') {
-    res.status(400).send({ message: 'Method not allowed' });
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    handleResponse({ res }, await getProjectApplicationsPublished());
     return;
   }
 
-  return addProjectApplication(req.body).then((response) => {
-    if (response.error) {
-      res.status(500);
-      res.json(response.error);
+  if (req.method === 'PUT') {
+    handleResponse(
+      { res },
+      await addProjectApplication(req.body),
+      (response) => {
+        if (bot) {
+          const message = [
+            `Nuova proposta inserita: ${response.name}`,
+            response.category,
+            response.description,
+            `Discord: ${response.discord}`,
+            `Telegram: ${response.telegram}`,
+          ].join('\n');
 
-      return;
-    }
+          sendNotification(bot, message);
+        }
+      }
+    );
 
-    if (bot) {
-      sendNotification(
-        bot,
-        `Nuova proposta inserita: ${response.name}\n${response.category}\n${response.description}\nDiscord: ${response.discord}\nTelegram: ${response.telegram}`
-      );
-    }
+    return;
+  }
 
-    res.json(response);
-  });
+  res.status(400).send({ message: 'Method not allowed' });
 }

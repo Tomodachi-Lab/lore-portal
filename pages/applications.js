@@ -1,16 +1,15 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import React from 'react';
-import { getProjectApplicationsPublished } from '../server/sheet';
 import Meta from '../client/components/Meta';
-import getProjects from '../server/getProjects';
 import Applications from '../client/views/Applications';
+import getProjects from '../server/getProjects';
 
-const App = ({ projects, applications }) => {
+const App = ({ projects }) => {
   return (
     <>
       <Meta title="Partecipa a un progetto" />
-      <Applications projects={projects} applications={applications} />
+      <Applications projects={projects} />
     </>
   );
 };
@@ -18,15 +17,11 @@ const App = ({ projects, applications }) => {
 export default App;
 
 export async function getStaticProps() {
-  const [projects, applications] = await Promise.all([
-    getProjects(path, fs),
-    getProjectApplicationsPublished(),
-  ]);
+  const projects = await getProjects(path, fs);
 
   return {
     props: {
       projects,
-      applications,
     },
   };
 }
