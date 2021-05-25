@@ -1,12 +1,9 @@
-import Header from '../client/components/Header';
-import GlobalStyle from '../client/theme/GlobalStyle';
+import Layout from '../client/components/Layout';
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
-      <GlobalStyle />
-      <Header />
+    <Layout>
       <Component {...pageProps} />
-    </>
+    </Layout>
   );
 }

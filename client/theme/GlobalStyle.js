@@ -4,7 +4,6 @@ import { fontFamilies, theme } from './theme';
 const GlobalStyle = createGlobalStyle`
   html, body, #__next {
     height: 100%;
-    overflow: auto;
     margin: 0;
   }
 
