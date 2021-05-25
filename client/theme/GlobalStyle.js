@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { theme } from './theme';
+import { fontFamilies, theme } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #__next {
@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: ${fontFamilies.body}, sans-serif;
     color: ${theme.text};
     background: ${theme.mainBg};
   }
@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
  
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Alegreya Sans", sans-serif;
+    font-family: ${fontFamilies.titles}, sans-serif;
     margin: 0;
     line-height: 1.1em;
   }

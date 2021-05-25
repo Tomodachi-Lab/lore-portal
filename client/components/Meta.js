@@ -1,10 +1,10 @@
 import Head from 'next/head';
 
-const TITLE = 'Tomodachi Hub';
+const TITLE = 'Tomodachi Lab';
 const DESCRIPTION =
   'Un portale in cui trovare tutti i progetti della community di DarioMocciaTwitch';
 
-const Meta = ({ title = '', description = DESCRIPTION, image, canonical }) => {
+const Meta = ({ title = '', description = DESCRIPTION, image }) => {
   const completeTitle = (() => {
     if (title) return `${TITLE} | ${title}`;
 
@@ -22,12 +22,12 @@ const Meta = ({ title = '', description = DESCRIPTION, image, canonical }) => {
         property="og:description"
         content={completeTitle}
       />
-      <meta property="og:site_name" content="Tomodachi Hub" />
+      <meta property="og:site_name" content={TITLE} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={completeTitle} />
       <meta name="twitter:description" content={description} />
-      <link rel="icon" type="image/png" href="/static/images/favicon.ico" />
-      <link rel="apple-touch-icon" href="/static/images/favicon.ico" />
+      <link rel="icon" type="image/png" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/favicon.ico" />
       {image ? (
         <>
           <meta property="og:image" content={image} />
