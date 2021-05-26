@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #__next {
     height: 100%;
     margin: 0;
+    scroll-behavior: smooth;
   }
 
   body {

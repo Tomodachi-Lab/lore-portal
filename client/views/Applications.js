@@ -1,10 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import Container from '../components/Container';
+import ApplicationsForm from '../components/ApplicationsForm';
 import ApplicationsTable from '../components/ApplicationsTable';
-import { breakpoints, colors, theme } from '../theme/theme';
-import useFetch from '../utils/useFetch';
+import { GradientButton } from '../components/Button';
+import Container from '../components/Container';
 import Loader from '../components/Loader';
+import { breakpoints, colors, theme } from '../theme/theme';
+import useApi, { API_BASE_URL } from '../utils/useApi';
 
 const Gradient = styled.div`
   height: 15em;
@@ -115,33 +118,6 @@ const SendButtonContainer = styled.div`
   padding: 2em 0;
 `;
 
-const Button = styled.button`
-  color: ${colors.white};
-  font-size: 1.5em;
-  padding: 1em;
-  border: 0;
-  cursor: pointer;
-
-  background-size: 200% auto;
-  transition: all 200ms ease-in-out;
-
-  &:hover {
-    transform: translateY(-3px);
-    background-position: right center;
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-
-  background-image: linear-gradient(
-    120deg,
-    ${colors.redRadical} 0%,
-    ${colors.orangeSunshade} 50%,
-    ${colors.redRadical} 100%
-  );
-`;
-
 const Grey = styled.section`
   padding: 2em 0;
   background: ${colors.grey};
@@ -150,8 +126,12 @@ const Grey = styled.section`
   min-height: 20rem;
 `;
 
-const Applications = ({ projects }) => {
-  const [applications, loading, error] = useFetch('project-applications');
+const FormContainer = styled(Container)`
+  padding: 4em 0;
+`;
+
+const Applications = () => {
+  const [applications, loading, error] = useApi('project-applications');
 
   return (
     <section>
@@ -193,7 +173,13 @@ const Applications = ({ projects }) => {
             realizzarlo?
           </Subtitle>
           <SendButtonContainer>
-            <Button>Inviaci la tua idea</Button>
+            <Link href="#form">
+              <GradientButton
+                gradientColors={[colors.redRadical, colors.orangeSunshade]}
+              >
+                Inviaci la tua idea
+              </GradientButton>
+            </Link>
           </SendButtonContainer>
         </Content>
       </Container>
@@ -207,7 +193,20 @@ const Applications = ({ projects }) => {
           )}
         </Container>
       </Grey>
-      <Container></Container>
+      <FormContainer id="form">
+        <Subtitle as="h2">Compila il form per inviarci la tua idea</Subtitle>
+        <ApplicationsForm
+          callback={(payload) => {
+            return fetch(`${API_BASE_URL}/project-applications`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+          }}
+        />
+      </FormContainer>
     </section>
   );
 };

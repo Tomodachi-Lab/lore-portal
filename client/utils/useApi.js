@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const key = 'tomodachi-lab';
-const baseUrl = '/api';
+export const API_BASE_URL = '/api';
 
 const saveData = (key, data) => {
   if (!process.browser) return;
@@ -37,8 +37,8 @@ const checkSavedData = (key) => {
   }
 };
 
-const useFetch = (endpoint) => {
-  const url = `${baseUrl}/${endpoint}`;
+const useApi = (endpoint) => {
+  const url = `${API_BASE_URL}/${endpoint}`;
   const savedKey = `${key}:${endpoint}`;
 
   const [response, setResponse] = useState(null);
@@ -69,4 +69,4 @@ const useFetch = (endpoint) => {
   return [response, loading, hasError];
 };
 
-export default useFetch;
+export default useApi;

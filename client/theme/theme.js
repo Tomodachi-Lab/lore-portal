@@ -8,6 +8,7 @@ export const colors = {
   redCornell: '#B51415',
   pink: '#E0479E',
   greyConcrete: '#7A7A7A',
+  greyIron: '#CCCCCC',
 
   twitch: '#6441A4',
 
