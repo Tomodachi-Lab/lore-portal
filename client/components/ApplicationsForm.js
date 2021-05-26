@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { colors, theme } from '../theme/theme';
+import { colors } from '../theme/theme';
 import { categories } from '../utils/categories';
 import { useInput } from '../utils/useInput';
 import { GradientButton } from './Button';
@@ -93,6 +93,7 @@ const ApplicationsForm = ({ callback }) => {
           className={setClass(name, requiredError)}
           id="name"
           type="text"
+          maxlength="40"
           placeholder="Nome del progetto"
         />
         <label htmlFor="name">
@@ -106,6 +107,7 @@ const ApplicationsForm = ({ callback }) => {
           className={setClass(description, requiredError)}
           id="description"
           type="textarea"
+          maxlength="300"
           placeholder="Breve descrizione"
         />
         <label htmlFor="description">
@@ -138,6 +140,7 @@ const ApplicationsForm = ({ callback }) => {
           className={setClass(discord, contactsError)}
           id="discord"
           type="discord"
+          maxlength="20"
           placeholder="Discord#0000"
         />
         <label htmlFor="discord">
@@ -151,6 +154,7 @@ const ApplicationsForm = ({ callback }) => {
           className={setClass(telegram, contactsError)}
           id="telegram"
           type="telegram"
+          maxlength="20"
           placeholder="@Telegram"
         />
         <label htmlFor="telegram">

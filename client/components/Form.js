@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { colors, theme } from '../theme/theme';
 
 const Form = styled.form`
+  padding: 0 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 40ch;
+  max-width: 50ch;
   margin: auto;
 
   fieldset {
@@ -15,6 +16,7 @@ const Form = styled.form`
     flex-direction: column;
     padding: 0;
     margin: 1em 0;
+    width: 100%;
 
     input,
     textarea,
@@ -23,7 +25,6 @@ const Form = styled.form`
       border: 0;
       background: 0;
       font-size: 1.25em;
-      min-width: 40ch;
 
       font-family: inherit;
       margin: 0;
