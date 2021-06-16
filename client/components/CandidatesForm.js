@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../theme/theme';
-import { categories } from '../utils/categories';
+import { roles, sectors } from '../utils/roles';
 import { useInput } from '../utils/useInput';
 import { GradientButton } from './Button';
 import Form from './Form';
@@ -43,12 +43,15 @@ const setClass = (value, shouldShowError) => {
   if (value) return 'filled';
 };
 
-const ApplicationsForm = ({ callback }) => {
-  const { value: name, bind: bindName } = useInput('');
-  const { value: description, bind: bindDescription } = useInput('');
-  const { value: category, bind: bindCategory } = useInput('');
+const CandidatesForm = ({ callback, projects }) => {
+  const { value: sector, setValue: setSector, bind: bindSector } = useInput('');
+  const { value: role, setValue: setRole, bind: bindRole } = useInput('');
+
+  const { value: project, bind: bindProject } = useInput(true);
   const { value: discord, bind: bindDiscord } = useInput('');
   const { value: telegram, bind: bindTelegram } = useInput('');
+
+  const { value: description, bind: bindDescription } = useInput('');
 
   const [requiredError, setRequiredError] = useState(false);
   const [contactsError, setContactsError] = useState(false);
@@ -59,7 +62,7 @@ const ApplicationsForm = ({ callback }) => {
   const [privacy, setPrivacy] = useState(false);
 
   const sendForm = useCallback(async () => {
-    const required = !name || !description || !category;
+    const required = !sector || !project || !role;
     const contacts = !discord && !telegram;
 
     setRequiredError(required);
@@ -70,67 +73,84 @@ const ApplicationsForm = ({ callback }) => {
     setFormSending(true);
 
     await callback({
-      name,
-      description,
-      category,
+      sector,
+      role,
+      project,
       discord,
       telegram,
+      description,
     });
 
     setFormSent(true);
     setFormSending(false);
-  }, [name, description, category, discord, telegram]);
+  }, [sector, role, project, discord, telegram, description]);
 
   useEffect(() => {
     setFormSent(false);
-  }, [name, description, category, discord, telegram]);
+  }, [sector, role, project, discord, telegram, description]);
 
   return (
-    <Form gradientColors={[colors.redRadical, colors.orangeSunshade]}>
-      <fieldset>
-        <input
-          {...bindName}
-          className={setClass(name, requiredError)}
-          id="name"
-          type="text"
-          maxLength="40"
-          placeholder="Nome del progetto"
-        />
-        <label htmlFor="name">
-          <span data-text="Nome*">Nome*</span>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <textarea
-          {...bindDescription}
-          className={setClass(description, requiredError)}
-          id="description"
-          type="textarea"
-          maxLength="300"
-          placeholder="Breve descrizione"
-        />
-        <label htmlFor="description">
-          <span data-text="Descrizione*">Descrizione*</span>
-        </label>
-      </fieldset>
-
+    <Form gradientColors={[colors.lavender, colors.twitch]}>
       <fieldset>
         <select
-          {...bindCategory}
-          id="category"
-          className={setClass(category, requiredError)}
+          {...bindSector}
+          onChange={(event) => {
+            const sector = event.target.value;
+            setSector(sector);
+            setRole(roles[sector][0]);
+          }}
+          id="sector"
+          className={setClass(sector, requiredError)}
         >
-          <option hidden disabled defaultValue=""></option>
+          <option hidden disabled defaultValue={true}></option>
 
-          {Object.entries(categories).map(([key, value]) => (
+          {Object.entries(sectors).map(([key, value]) => (
             <option key={key} value={key}>
               {value}
             </option>
           ))}
         </select>
-        <label htmlFor="category">
-          <span data-text="Categoria*">Categoria*</span>
+        <label htmlFor="sector">
+          <span data-text="Settore*">Settore*</span>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <select
+          {...bindRole}
+          id="role"
+          className={setClass(role, requiredError)}
+          disabled={!sector || sector === 'other'}
+        >
+          {(sector ? roles[sector] : []).map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="role">
+          <span data-text="Ruolo*">Ruolo*</span>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <select
+          {...bindProject}
+          id="project"
+          className={setClass(project, requiredError)}
+        >
+          <option defaultValue="" value="">
+            Tutti
+          </option>
+
+          {projects.map(({ slug, title }) => (
+            <option key={slug} value={slug}>
+              {title}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="project">
+          <span data-text="Progetto*">Progetto*</span>
         </label>
       </fieldset>
 
@@ -162,6 +182,19 @@ const ApplicationsForm = ({ callback }) => {
         </label>
       </fieldset>
 
+      <fieldset>
+        <textarea
+          {...bindDescription}
+          id="description"
+          type="textarea"
+          maxLength="300"
+          placeholder="Breve descrizione"
+        />
+        <label htmlFor="description">
+          <span data-text="Descrizione">Descrizione</span>
+        </label>
+      </fieldset>
+
       <CheckboxContainer>
         <input
           id="privacy"
@@ -184,7 +217,7 @@ const ApplicationsForm = ({ callback }) => {
 
       <ButtonsContainer>
         <GradientButton
-          gradientColors={[colors.redRadical, colors.orangeSunshade]}
+          gradientColors={[colors.lavender, colors.twitch]}
           disabled={formSent || !privacy}
           type="button"
           onClick={sendForm}
@@ -194,7 +227,7 @@ const ApplicationsForm = ({ callback }) => {
 
         {formSending ? (
           <LoaderContainer>
-            <Loader color={colors.redRadical} />
+            <Loader color={colors.lavender} />
           </LoaderContainer>
         ) : (
           ''
@@ -204,4 +237,4 @@ const ApplicationsForm = ({ callback }) => {
   );
 };
 
-export default ApplicationsForm;
+export default CandidatesForm;

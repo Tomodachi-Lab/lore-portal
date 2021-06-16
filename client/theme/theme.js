@@ -18,6 +18,8 @@ export const colors = {
   // Prelive colors
   redRadical: '#FF246E',
   orangeSunshade: '#FFA12B',
+
+  green: '#0d9d58'
 };
 
 export const theme = {

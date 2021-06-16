@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faGamepad,
+  faKeyboard,
   faMusic,
   faPalette,
   faShapes,
@@ -15,7 +16,7 @@ import {
   categoriesIcons,
 } from '../utils/categories';
 
-library.add(faGamepad, faMusic, faPalette, faShapes);
+library.add(faGamepad, faMusic, faPalette, faKeyboard, faShapes);
 
 const Wrapper = styled.div`
   display: inline-flex;

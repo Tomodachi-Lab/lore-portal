@@ -5,14 +5,6 @@ import {
 } from '../../server/sheet';
 import { sendNotification } from '../../server/telegram';
 
-const TelegramBot = require('node-telegram-bot-api');
-
-const bot = (() => {
-  if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHANNEL_ID) {
-    return new TelegramBot(process.env.TELEGRAM_BOT_TOKEN);
-  }
-})();
-
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     handleResponse({ res }, await getProjectApplicationsPublished());
@@ -24,17 +16,15 @@ export default async function handler(req, res) {
       { res },
       await addProjectApplication(req.body),
       (response) => {
-        if (bot) {
-          const message = [
-            `Nuova proposta inserita: ${response.name}`,
-            response.category,
-            response.description,
-            `Discord: ${response.discord}`,
-            `Telegram: ${response.telegram}`,
-          ].join('\n');
+        const message = [
+          `Nuova proposta inserita: ${response.name}`,
+          response.category,
+          response.description,
+          `Discord: ${response.discord}`,
+          `Telegram: ${response.telegram}`,
+        ].join('\n');
 
-          sendNotification(bot, message);
-        }
+        sendNotification(message);
       }
     );
 

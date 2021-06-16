@@ -22,8 +22,8 @@ const ApplicationsTable = ({ items }) => {
             <td data-label="Categoria">{categories[category]}</td>
             <td data-label="Contatti">
               <div>
-                <div>{discord}</div>
-                <div>{telegram}</div>
+                {discord && <div>{discord}</div>}
+                {telegram && <div>{telegram}</div>}
               </div>
             </td>
           </tr>

@@ -34,9 +34,9 @@ const Form = styled.form`
         color: ${colors.greyIron};
       }
 
-      &:focus,
-      &:active,
-      &.filled,
+      &:focus:not(:disabled),
+      &:active:not(:disabled),
+      &.filled:not(:disabled),
       &.error {
         color: ${({ first }) => first || theme.primary};
 
@@ -116,8 +116,12 @@ const Form = styled.form`
         max-width: 0;
         background: linear-gradient(
           120deg,
-          ${({ first }) => first || theme.primary} 0%,
-          ${({ second }) => second || theme.accent} 100%
+          ${({ gradientColors }) =>
+              gradientColors ? gradientColors[0] : theme.primary}
+            0%,
+          ${({ gradientColors }) =>
+              gradientColors ? gradientColors[1] : theme.accent}
+            100%
         );
         transition: all 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
       }
@@ -141,7 +145,9 @@ const Form = styled.form`
 
           background-image: linear-gradient(
             to right,
-            ${({ first }) => first || theme.primary} 50%,
+            ${({ gradientColors }) =>
+                gradientColors ? gradientColors[0] : theme.primary}
+              50%,
             rgba(0, 0, 0, 0) 0%
           );
           background-position: 100% 50%;

@@ -37,17 +37,25 @@ const serializeRow = (sheet, row) => {
   }, {});
 };
 
-export const getCandidates = async () => readSheet(SHEETS.CANDIDATES);
+export const getCandidates = async () =>
+  (await readSheet(SHEETS.CANDIDATES)).map(
+    ({ telegram, discord, ...item }) => ({
+      ...item,
+      telegram,
+      discord,
+      key: telegram || discord,
+    })
+  );
 
 export const addCandidate = async (body) => {
   try {
     const sheet = await getSheet(SHEETS.CANDIDATES);
 
-    const { category, role, project, telegram, discord } = body;
+    const { sector, role, project, discord, telegram, description } = body;
 
-    if (!category || !role) {
+    if (!sector || !role || !project) {
       throw new Error(
-        `Required value missing [category: ${category}, role: ${role}]`
+        `Required value missing [category: ${category}, role: ${role}, project: ${project}]`
       );
     }
 
@@ -58,11 +66,12 @@ export const addCandidate = async (body) => {
     }
 
     await sheet.addRow({
-      category,
+      sector,
       role,
       project,
-      telegram,
       discord,
+      telegram,
+      description,
     });
 
     return body;

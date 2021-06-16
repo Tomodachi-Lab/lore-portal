@@ -6,8 +6,7 @@ import Container from './Container';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { breakpoints } from '../theme/theme';
-
-const CATEGORIES = ['games', 'music', 'illustration', 'other'];
+import { categories } from '../utils/categories';
 
 const SearchContainer = styled(Container)`
   display: flex;
@@ -48,7 +47,7 @@ const Search = ({ projects }) => {
   const { query } = router;
 
   const selectedCategories = Array.isArray(query.category || [])
-    ? query.category || CATEGORIES
+    ? query.category || Object.keys(categories)
     : [query.category];
 
   const [results, setResults] = useState(projects);
@@ -70,7 +69,7 @@ const Search = ({ projects }) => {
 
     const applyCategoryFilter = (projects) => {
       const selectedCategories = Array.isArray(category || [])
-        ? category || CATEGORIES
+        ? category || Object.keys(categories)
         : [category];
 
       return projects.filter((project) =>
@@ -119,7 +118,7 @@ const Search = ({ projects }) => {
   return (
     <SearchContainer>
       <Filters>
-        {CATEGORIES.map((category) => (
+        {Object.keys(categories).map((category) => (
           <Button
             key={category}
             active={isCategorySelected(category)}
