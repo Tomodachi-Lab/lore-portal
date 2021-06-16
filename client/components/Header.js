@@ -17,7 +17,7 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5em 1em;
+  padding: 0 1em;
 
   @media screen and (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
@@ -39,6 +39,7 @@ const Left = styled.div``;
 const Right = styled.div``;
 
 const Search = styled.label`
+  margin: 1.5em 0;
   padding: 0.75em;
   background: ${colors.grey};
   border-radius: 2em;
@@ -55,6 +56,26 @@ const Search = styled.label`
     &::placeholder {
       color: ${colors.greyConcrete};
     }
+  }
+`;
+
+const logoSize = 125;
+
+const SlidingLogo = styled.div`
+  cursor: pointer;
+
+  background: url('/static/logo-sprites.png') 0 -${logoSize * 15}px no-repeat;
+  background-size: ${logoSize}px;
+  height: ${logoSize}px;
+  width: ${logoSize}px;
+  transition: background-position 0.25s steps(15, end);
+
+  &:hover {
+    background-position: 0 0;
+  }
+
+  @media screen and (max-width: ${breakpoints.tablet}) {
+    background-position: 0 0;
   }
 `;
 
@@ -79,7 +100,9 @@ const Header = () => {
   return (
     <Wrapper>
       <Left>
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <SlidingLogo />
+        </Link>
       </Left>
       <Right>
         <Search>

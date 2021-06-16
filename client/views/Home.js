@@ -6,6 +6,8 @@ import Card from '../components/Card';
 import Container from '../components/Container';
 import { breakpoints, colors, theme } from '../theme/theme';
 
+const marginBottom = `${12.5}em`;
+
 const SplashImage = styled.div`
   height: calc(100vh - 15rem);
   width: 100%;
@@ -64,22 +66,9 @@ const SplashImage = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  position: relative;
-  z-index: 2;
-  font-size: 8em;
-  text-transform: uppercase;
-  color: ${colors.white};
-  text-align: center;
-
-  @media screen and (max-width: ${breakpoints.tablet}) {
-    font-size: 3.5em;
-  }
-`;
-
 const CardsContainer = styled.section`
   margin: 0 2em;
-  margin-top: -12.5em;
+  margin-top: -${marginBottom};
   padding: 0.5em;
 
   background: ${theme.mainBg};
@@ -151,6 +140,16 @@ const Candidates = styled(Button)`
   );
 `;
 
+const Logo = styled.img`
+  position: relative;
+  z-index: 2;
+  height: 20em;
+  max-width: 100%;
+  height: calc(100% - ${marginBottom});
+  padding: 4em;
+  margin-bottom: ${marginBottom};
+`;
+
 const Home = ({ projects, home }) => {
   const { splashImage, attribution, attributionLink } = home;
 
@@ -160,7 +159,7 @@ const Home = ({ projects, home }) => {
         <AttributionContainer>
           <Attribution name={attribution} url={attributionLink} />
         </AttributionContainer>
-        <Title>Tomodachi Lab</Title>
+        <Logo src="/static/logo-color.svg" />
       </SplashImage>
       <Container>
         <CardsContainer>
