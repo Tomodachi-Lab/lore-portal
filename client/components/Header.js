@@ -63,7 +63,7 @@ const logoSize = 125;
 
 const SlidingLogo = styled.div`
   cursor: pointer;
-
+  image-rendering: crisp-edges;
   background: url('/static/logo-sprites.png') 0 -${logoSize * 15}px no-repeat;
   background-size: ${logoSize}px;
   height: ${logoSize}px;

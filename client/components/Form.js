@@ -38,7 +38,7 @@ const Form = styled.form`
       &:active:not(:disabled),
       &.filled:not(:disabled),
       &.error {
-        color: ${({ first }) => first || theme.primary};
+        color: ${({ gradientColors }) => gradientColors[0]};
 
         & + label {
           &:after {

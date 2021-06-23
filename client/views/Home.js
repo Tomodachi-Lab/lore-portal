@@ -20,13 +20,22 @@ const SplashImage = styled.div`
 
   overflow: hidden;
 
-  &:before {
+  &:before,
+  &:after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  &:after {
+    background: black;
+    opacity: 0.25;
+  }
+
+  &:before {
     background-image: url('${({ image }) => image}');
     background-size: cover;
     background-position: center;
@@ -140,7 +149,7 @@ const Candidates = styled(Button)`
   );
 `;
 
-const Logo = styled.img`
+const Logo = styled.div`
   position: relative;
   z-index: 2;
   height: 20em;
@@ -148,6 +157,15 @@ const Logo = styled.img`
   height: calc(100% - ${marginBottom});
   padding: 4em;
   margin-bottom: ${marginBottom};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > img {
+    max-height: 100%;
+    max-width: 100%;
+  }
 `;
 
 const Home = ({ projects, home }) => {
@@ -159,7 +177,9 @@ const Home = ({ projects, home }) => {
         <AttributionContainer>
           <Attribution name={attribution} url={attributionLink} />
         </AttributionContainer>
-        <Logo src="/static/logo-color.svg" />
+        <Logo>
+          <img src="/static/logo-full.png" />
+        </Logo>
       </SplashImage>
       <Container>
         <CardsContainer>
