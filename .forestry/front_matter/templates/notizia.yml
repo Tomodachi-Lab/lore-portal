@@ -43,3 +43,5 @@ fields:
       file: 
       path: 
   label: Progetto
+pages:
+- data/news/test-news.json
