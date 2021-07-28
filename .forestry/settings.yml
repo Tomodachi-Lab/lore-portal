@@ -13,12 +13,16 @@ sections:
   create: documents
   match: "**/*.json"
   new_doc_ext: json
+  templates:
+  - progetto
 - type: directory
   path: data/news
   label: Notizie
   create: documents
   match: "**/*.json"
   new_doc_ext: json
+  templates:
+  - notizia
 upload_dir: public/assets
 public_path: "/assets"
 front_matter_path: ''
