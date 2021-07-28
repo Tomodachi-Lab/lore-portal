@@ -1,4 +1,45 @@
 ---
 label: Notizia
 hide_body: true
-fields: []
+fields:
+- name: date
+  type: datetime
+  label: Data
+  description: ''
+  config:
+    required: true
+    date_format: 
+    time_format: 
+    display_utc: false
+  default: now
+- name: title
+  type: text
+  config:
+    required: true
+  label: Titolo
+- name: picture
+  type: file
+  config:
+    maxSize: 64
+  label: Immagine
+- name: body
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Contenuto
+- name: project
+  type: select
+  default: []
+  config:
+    required: true
+    options: []
+    source:
+      type: pages
+      section: progetti-0a730fdc-53b5-4355-8fa4-42805f53c433
+      file: 
+      path: 
+  label: Progetto
